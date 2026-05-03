@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JavaScript Clock</title>
+  <title>JavaScript</title>
 </head>
 <body>
 
-<h2>Live Time</h2>
+<h2>My First JavaScript</h2>
+
+<button type="button" onclick="showDateTime()">
+  Click me to display Date and Time.
+</button>
 
 <p id="demo"></p>
 
 <script>
-  setInterval(() => {
-    document.getElementById("demo").innerHTML = new Date().toLocaleTimeString();
-  }, 1000);
+function showDateTime() {
+  const now = new Date();
+  document.getElementById("demo").innerHTML = now.toString();
+}
 </script>
 
 </body>
