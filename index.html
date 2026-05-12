@@ -1,24 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>JavaScript</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript - Date & Time</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      backdrop-filter: blur(16px);
+    }
+
+    .icon {
+      font-size: 48px;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #f7df1e;
+      color: #1a1a1a;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.85rem 2rem;
+      background: #f7df1e;
+      color: #1a1a1a;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn:hover {
+      opacity: 0.88;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .output-box {
+      margin-top: 2rem;
+      background: rgba(247, 223, 30, 0.07);
+      border: 1px solid rgba(247, 223, 30, 0.25);
+      border-radius: 14px;
+      padding: 1.2rem 1.5rem;
+      display: none;
+    }
+
+    .output-box.visible {
+      display: block;
+    }
+
+    .output-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(247, 223, 30, 0.6);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .output-date {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.2rem;
+    }
+
+    .output-time {
+      font-size: 36px;
+      font-weight: 700;
+      color: #f7df1e;
+      letter-spacing: 2px;
+    }
+
+    .output-full {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: 0.6rem;
+      word-break: break-word;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 1rem 0;
+    }
+  </style>
 </head>
 <body>
 
-<h2>My First JavaScript</h2>
+  <div class="card">
+    <div class="icon">🕐</div>
+    <div class="badge">JavaScript</div>
+    <h2>My First JavaScript</h2>
+    <p class="subtitle">Click the button below to display the current date and time.</p>
 
-<button type="button" onclick="showDateTime()">
-  Click me to display Date and Time.
-</button>
+    <button class="btn" type="button" onclick="showDateTime()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+      </svg>
+      Show Date & Time
+    </button>
 
-<p id="demo"></p>
+    <div class="output-box" id="outputBox">
+      <div class="output-label">Current Time</div>
+      <div class="output-date" id="dateDisplay"></div>
+      <div class="output-time" id="timeDisplay"></div>
+      <hr class="divider"/>
+      <div class="output-full" id="demo"></div>
+    </div>
+  </div>
 
-<script>
-function showDateTime() {
-  const now = new Date();
-  document.getElementById("demo").innerHTML = now.toString();
-}
-</script>
+  <script>
+    function showDateTime() {
+      const now = new Date();
+
+      const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+      document.getElementById("dateDisplay").textContent = now.toLocaleDateString(undefined, dateOptions);
+      document.getElementById("timeDisplay").textContent = now.toLocaleTimeString(undefined, timeOptions);
+      document.getElementById("demo").textContent = now.toString();
+
+      document.getElementById("outputBox").classList.add("visible");
+    }
+  </script>
 
 </body>
 </html>
